@@ -31,6 +31,13 @@ FileUtils.chdir APP_ROOT do
     end
   end
 
+  puts "\n== Creating deploy.yml file =="
+  if File.exist?("config/deploy.yml")
+    puts "deploy.yml file already exists"
+  else
+    FileUtils.cp("config/deploy.yml.template", "config/deploy.yml")
+  end
+
   puts "\n== Preparing database =="
   system! "bin/rails db:prepare"
 
